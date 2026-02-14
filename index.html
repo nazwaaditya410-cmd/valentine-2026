@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flower Bouquet</title>
+    <link rel="stylesheet" href="bouquet.css">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+    <source src="Elvis Presley - Can't Help Falling in Love (Lyrics).mp3" type="audio/mpeg">
+</audio>
+
+<div class="main-layout">
+    <div class="side-column">
+        <div class="polaroid-frame">
+            <img id="leftImg" src="side-photo1.jpeg" class="side-photo">
+            <p class="cap-left">You are my calm in chaos, my comfort in long days, my safe place without walls.</p>
+        </div>
+    </div>
+
+    <div class="bouquet-wrapper">
+        <img src="85239a4f-2071-4f3f-829e-b0ccb9fbe359-removebg-preview.png" class="bg-image">
+        <img src="flower 1.png" class="flower" style="top: 20%; left: 5%; width: 45%;" onclick="openMsg('Like a daisy, our love feels pure and honest. It’s the kind of love that starts gently but stays loyal and true. With you, everything feels fresh, like a new beginning I never want to end. ', 'flower 1.png')">
+        <img src="flower 9.png" class="flower" style="top: 15%; left: 58%; width: 41%;" onclick="openMsg('The delicate filler flowers represent the subtle ways I love you. The way I think of you when I wake up. The way I wish you good nights in my mind. The way my world feels just a little brighter because you exist in it.', 'flower 9.png')">
+        <img src="flower 2.png" class="flower" style="top: 24%; left: 49%; width: 44%;" onclick="openMsg('Like a lily, you carry a quiet elegance that makes my heart soften. My love for you is devoted and sincere, gentle but strong, the kind that stays steady even in silence. ', 'flower 2.png')">
+        <img src="flower 3.png" class="flower" style="top: 42%; left: 40%; width: 30%;" onclick="openMsg('Like a rose, my love for you is deep and passionate. Not just beautiful on the surface, but rooted in something real. Every petal feels like a promise that I will keep choosing you, again and again.', 'flower 3.png')">
+        <img src="flower 4.png" class="flower" style="top: 55%; left: 35%; width: 24%;" onclick="openMsg('Like cosmos, my love for you feels pure and timeless. Soft, delicate, and rare. It’s not loud, but it’s lasting. A love that feels clean, sincere, and meant to stay.', 'flower 4.png')">
+        <img src="flower 5.png" class="flower" style="top: 47%; left: 60%; width: 24%;" onclick="openMsg('Even the smallest flowers in this bouquet carry pieces of my heart. They may look simple, but they hold the quiet promises I make to you every day. The promise to stay, to care, to choose you even in the ordinary moments that no one else sees.', 'flower 5.png')">
+        <img src="flower 6.png" class="flower" style="top: 58%; left: 52%; width: 29%;" onclick="openMsg('These little blooms are like the gentle parts of my love. Not loud or dramatic, but steady and sincere. They remind me that love isn’t only in grand gestures, but in soft glances, warm conversations, and the comfort of simply being together.', 'flower 6.png')">
+        <img src="flower 7.png" class="flower" style="top: 40%; left: 80%; width: 23%;" onclick="openMsg('Though they are called “fillers,” they complete the bouquet, just like the small memories we create complete our story. Every laugh, every random talk, every quiet second with you becomes something beautiful in my heart.', 'flower 7.png')">
+        <img src="flower 8.png" class="flower" style="top: 40%; left: 20%; width: 22%;" onclick="openMsg('Like a pink dianthus, my love for you is full of quiet affection. It’s in the little things the way I remember your smile, the way I miss you in ordinary moments. You are the soft warmth I’m grateful for every day. Loving you isn’t just passion. It’s appreciation. It’s choosing you gently, sincerely, and completely. Pink dianthus is delicate, but it endures. Just like how my feelings for you are tender, yet unshakable.', 'flower 8.png')">
+        
+    </div>
+
+<div class="bottom-text-container">
+    <div class="valentine-ribbon">
+        <h2 id="dynamicText">Happy Valentine's Day</h2>
+    </div>
+</div>
+
+    <div class="side-column">
+        <div class="polaroid-frame">
+            <img id="rightImg" src="side_photo2.jpeg" class="side-photo">
+            <p class="cap-right">Your smile is my favorite view. It’s the kind of light that makes my whole world brighter.</p>
+        </div>
+    </div>
+</div>
+
+
+<button class="music-toggle" onclick="toggleMusic()" id="musicBtn">🎵</button>
+
+    <div id="msgModal" class="modal">
+    <div class="modal-content">
+        <img id="modalFlower" src="" class="note-flower-decoration">
+        <p id="msgText"></p>
+        <button class="close-btn" onclick="closeMsg()">Close</button>
+    </div>
+</div>
+
+    <script src="bouquet.js"></script>
+</body>
+</html>

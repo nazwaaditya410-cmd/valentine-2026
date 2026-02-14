@@ -1,0 +1,299 @@
+body {
+    background-color: #fceef5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #fceef5;
+    /* This adds soft white "polka dots" that look like confetti */
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 40px 40px;
+    /* Optional: Make the background move very slowly */
+    animation: moveBackground 100s linear infinite;
+}
+
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+ /* New Layout Container */
+.main-layout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+/* Side Columns */
+.side-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Polaroid Look */
+.polaroid-frame {
+    background: white;
+    padding: 15px 15px 30px 15px; /* Extra padding at the bottom for text */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transform: rotate(-3deg); /* Slight tilt for that messy/cute look */
+    transition: all 0.5s ease;
+    width: 220px; /* Adjust based on your side space */
+}
+
+.polaroid-frame p {
+    font-family: 'Brush Script MT', cursive; /* Or any handwriting font */
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.polaroid-frame {
+    transition: opacity 1s ease; /* Matches your JS timeout */
+} 
+
+.polaroid-img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.caption {
+    font-family: 'Brush Script MT', 'Dancing Script', cursive;
+    text-align: center;
+    color: #444;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+/* Hover effect to make it interactive */
+.polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 10;
+}
+
+.side-column:last-child .polaroid-frame {
+    transform: rotate(3deg); /* Tilt the other way on the right */
+}
+
+.side-photo {
+    width: 220px;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Music Button */
+.music-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 2000;
+} 
+
+.bouquet-wrapper {
+    position: relative;
+    max-width: 450px;
+}
+
+.bg-image {
+    width: 100%;
+    display: block;
+}
+
+.flower {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+
+    /* THIS FIXES THE BLOCKING: */
+    /* It uses the PNG transparency to define the clickable area */
+    -webkit-mask-image: var(--url);
+    mask-image: var(--url);
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    
+    pointer-events: auto;
+    transition: filter 0.3s;
+}
+
+.flower:hover {
+    filter: brightness(1.2) drop-shadow(0 0 10px #ff4d6d);
+    z-index: 10;
+}
+
+/* Modal styles stay simple */
+/* The background overlay */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); /* Lighter overlay to keep it airy */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    perspective: 1000px; /* Needed for the 3D fold effect */
+}
+
+/* The Letter/Paper */
+.modal-content {
+    background: #fffef0;
+    padding: 40px;
+    border-radius: 2px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #d4d4d4;
+    max-width: 400px;
+    
+    /* Animation start point: Folded and Small */
+    transform: rotateX(-90deg); 
+    transform-origin: top;
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    font-family: 'Brush Script MT', 'Dancing Script', cursive; 
+    color: #4b3621;
+}
+
+/* When the letter "Opens" */
+.modal.show .modal-content {
+    transform: rotateX(0deg) rotate(-2deg); /* Unfolds and gives a slight tilt */
+    opacity: 1;
+}
+
+
+
+
+.modal-content p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+/* The temporary flower that flies */
+.note-flower-decoration {
+    position: absolute;
+    top: -40px; /* Adjust to move it up or down */
+    left: -30px; /* Adjust to move it left or right */
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));
+    z-index: 11; /* Sits right on the edge of the paper */
+}
+
+
+
+.close-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #4b3621;
+    color: #4b3621;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* The temporary flying flower */
+.flying-flower {
+    position: fixed;
+    z-index: 2000; /* Above everything */
+    transition: all 2.0s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    z-index: 10000 !important;
+}
+
+.bouquet-wrapper.searching {
+    filter: blur(4px) grayscale(20%);
+    transition: filter 2.0s ease;
+}
+/* Make the modal start invisible so the transition looks smooth */
+.modal {
+    display: none;
+    opacity: 0;
+    transition: opacity 1.0s ease;
+    z-index: 9999 !important;
+}
+
+.modal.show {
+    display: flex !important;
+    opacity: 1;
+}
+
+/* This targets the bouquet AND the new text container */
+.bouquet-wrapper.searching, 
+.bottom-text-container.searching {
+    filter: blur(8px) brightness(0.9);
+    transition: filter 1.5s ease; /* Matches your slow movement */
+}
+
+/* Make sure the text looks nice at the bottom */
+.bottom-text-container {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+
+.valentine-ribbon {
+    position: relative;
+    background: #ff4d6d; /* Deep pink/red ribbon color */
+    color: white;
+    padding: 15px 80px; /* Wide padding to make it long */
+    min-width: 400px;    /* Forces the ribbon to be a certain length */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Creating the "Fishtail" ends of the ribbon */
+.valentine-ribbon::before,
+.valentine-ribbon::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 100%;
+    background: #d83a56; /* Slightly darker shade for fold effect */
+    z-index: -1;
+}
+
+.valentine-ribbon::before {
+    left: -20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 25% 50%);
+}
+
+.valentine-ribbon::after {
+    right: -20px;
+    clip-path: polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%);
+}
+
+#dynamicText {
+    font-family: 'Georgia', serif; /* A classic serif looks great on ribbons */
+    font-size: 1.6rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Makes the text stretch longer */
+    transition: opacity 0.8s ease-in-out;
+}
